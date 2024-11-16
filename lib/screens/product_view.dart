@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:star_fashion/utils/text_style.dart';
 
 import '../utils/app_color.dart';
 import '../widgets/product_view_widget.dart';
@@ -31,16 +32,26 @@ class _ProductDisplayScreenState extends State<ProductDisplayScreen>
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-      child: Column(
-        children: [
-          TopContainerWidget(
-            title: 'C H I C S',
-            searchBarTitle: 'Search Product',
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          pinned: false,
+          expandedHeight: 100.0,
+          flexibleSpace: FlexibleSpaceBar(
+            title: const Text(
+              'C H I C S',
+              style: TextStyles.titleStyle,
+            ),
+            centerTitle: true,
           ),
-          TabBar(
+        ),
+        const SliverToBoxAdapter(
+          child: SizedBox(
+            height: 20,
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: TabBar(
             overlayColor: const WidgetStatePropertyAll(Colors.transparent),
             controller: tabController,
             indicatorSize: TabBarIndicatorSize.label,
@@ -58,66 +69,34 @@ class _ProductDisplayScreenState extends State<ProductDisplayScreen>
               Container(
                 width: double.infinity,
                 height: 50,
-                alignment: Alignment.center,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30.0),
-                    color: selectedValue == 0
-                        ? AppColor.backgroundColor
-                        : AppColor.greyColor.withOpacity(0.8),
-                    boxShadow: selectedValue == 0
-                        ? [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.3),
-                              blurRadius: 5,
-                              spreadRadius: 1,
-                              offset: const Offset(0, 1),
-                            ),
-                          ]
-                        : null),
-                child: const Text(
-                  'Trending',
-                  textAlign: TextAlign.center,
+                  color: selectedValue == 0
+                      ? AppColor.backgroundColor
+                      : Colors.transparent,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                  ),
                 ),
+                child: const Center(child: Text('Trending')),
               ),
               Container(
                 width: double.infinity,
                 height: 50,
-                alignment: Alignment.center,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30.0),
-                    color: selectedValue == 1
-                        ? AppColor.backgroundColor
-                        : AppColor.greyColor.withOpacity(0.8),
-                    boxShadow: selectedValue == 1
-                        ? [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.3),
-                              blurRadius: 5,
-                              spreadRadius: 1,
-                              offset: const Offset(0, 1),
-                            ),
-                          ]
-                        : null),
-                child: const Text(
-                  'Clothing',
-                  textAlign: TextAlign.center,
+                  color: selectedValue == 1
+                      ? AppColor.backgroundColor
+                      : Colors.transparent,
+                  borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(20),
+                  ),
                 ),
+                child: const Center(child: Text('New Arrivals')),
               ),
             ],
           ),
-          SizedBox(
-            height: height,
-            child: TabBarView(
-              physics: const NeverScrollableScrollPhysics(),
-              controller: tabController,
-              children: const [
-                ProductDisplaysViewWidget(),
-                ProductDisplaysViewWidget(),
-              ],
-            ),
-          ),
-        ],
-      ),
+        ),
+        // Add other slivers here, such as SliverList or SliverGrid
+      ],
     );
   }
 }

@@ -31,25 +31,29 @@ class _ProductDisplaysViewWidgetState extends State<ProductDisplaysViewWidget> {
           .select('*')
           .order('created_at', ascending: false);
 
-      setState(() {
-        products = (response as List)
-            .map((product) => Product(
-                  id: product['id'],
-                  name: product['name'],
-                  description: product['description'],
-                  price: product['price'].toDouble(),
-                  brand: product['brand'],
-                  imageUrl: product['image_url'],
-                  category: product['category'],
-                ))
-            .toList();
-        _isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          products = (response as List)
+              .map((product) => Product(
+                    id: product['id'],
+                    name: product['name'],
+                    description: product['description'],
+                    price: product['price'].toDouble(),
+                    brand: product['brand'],
+                    imageUrl: product['image_url'],
+                    category: product['category'],
+                  ))
+              .toList();
+          _isLoading = false;
+        });
+      }
     } catch (e) {
-      setState(() {
-        _error = 'Error loading products: $e';
-        _isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _error = 'Error loading products: $e';
+          _isLoading = false;
+        });
+      }
     }
   }
 

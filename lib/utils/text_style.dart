@@ -5,7 +5,7 @@ class TextStyles {
     fontSize: 28,
     fontWeight: FontWeight.bold,
     letterSpacing: 1.5,
-    color: Colors.white,
+    color: Colors.black,
   );
 
   static const normalStyle = TextStyle(
