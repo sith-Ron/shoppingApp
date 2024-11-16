@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "688435362370",
+    "project_id": "vazi-kali",
+    "storage_bucket": "vazi-kali.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688435362370:android:b07153449cddefa6a1cbdb",
+        "android_client_info": {
+          "package_name": "com.example.star_fashion"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCX0payI8pvV4XtrYJ3MeSYxhKG5rzQi7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
